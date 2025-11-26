@@ -341,7 +341,7 @@ var _s = __turbopack_context__.k.signature();
 ;
 const images = [
     {
-        src: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/424907931.jpg?k=2f5ecbb7f662435873f58aa7c1634ae93357b03b8321aa8f890d202ddf9a1926&o=",
+        src: "/images/424902850.jpg",
         alt: "Área de estar da Estância Monte Horebe"
     },
     {

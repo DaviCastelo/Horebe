@@ -32,7 +32,7 @@ export default function About() {
           <div className="relative">
             <div className="aspect-[4/5] relative rounded-lg overflow-hidden shadow-xl">
               <Image
-                src="/cozy-rustic-pousada-interior-with-natural-wood-and.jpg"
+                src="/images/424902850.jpg"
                 alt="Interior acolhedor da Estância Monte Horebe"
                 fill
                 className="object-cover"
