@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Instagram, Facebook, Mail, Phone, MapPin } from "lucide-react"
+import { getWhatsAppUrl } from "@/lib/constants"
 
 const navLinks = [
   { href: "/#inicio", label: "Início" },
@@ -56,7 +57,7 @@ export default function Footer() {
                 Mulungu, Ceará - Brasil
               </p>
               <a
-                href="https://wa.me/5585988662996"
+                href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"

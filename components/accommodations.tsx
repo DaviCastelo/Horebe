@@ -1,8 +1,8 @@
 import Image from "next/image"
-import { Users, Maximize } from "lucide-react"
+import { Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import Link from "next/link"
+import { BOOKING_URL } from "@/lib/constants"
 
 const rooms = [
   {
@@ -12,7 +12,7 @@ const rooms = [
     capacity: "2 pessoas",
     beds: "1 cama de casal",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo"],
-    bookingLink: "https://www.booking.com/hotel/br/estancia-monte-horebe.pt-br.html?label=estancia-monte-horebe-uYNjynFmZO8Bv6ZjUtddJQS704512921388%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1835805265912%3Alp9222782%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YbC4OlOULAnvcrFmvh1xnqM&sid=7be39d76465260ab76f140f6b428dba9&gclid=CjwKCAiA55rJBhByEiwAFkY1QNXwecpnSh3OLR8HcYEhdUA_PXaU9Sw_Qfim3AIbrPBC3lO-yZW34BoCZgUQAvD_BwE&aid=1726433&ucfs=1&arphpl=1&dest_id=-656419&dest_type=city&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=76f593f33f4d076b&srepoch=1764190961&from=searchresults",
+    bookingLink: BOOKING_URL,
   },
   {
     name: "Quarto Triplo",
@@ -21,7 +21,7 @@ const rooms = [
     capacity: "3 pessoas",
     beds: "1 cama de solteiro e 1 cama de casal",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo"],
-    bookingLink: "https://www.booking.com/hotel/br/estancia-monte-horebe.pt-br.html?label=estancia-monte-horebe-uYNjynFmZO8Bv6ZjUtddJQS704512921388%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1835805265912%3Alp9222782%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YbC4OlOULAnvcrFmvh1xnqM&sid=7be39d76465260ab76f140f6b428dba9&gclid=CjwKCAiA55rJBhByEiwAFkY1QNXwecpnSh3OLR8HcYEhdUA_PXaU9Sw_Qfim3AIbrPBC3lO-yZW34BoCZgUQAvD_BwE&aid=1726433&ucfs=1&arphpl=1&dest_id=-656419&dest_type=city&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=76f593f33f4d076b&srepoch=1764190961&from=searchresults",
+    bookingLink: BOOKING_URL,
   },
   {
     name: "Quarto Quádruplo",
@@ -30,7 +30,7 @@ const rooms = [
     capacity: "4 pessoas",
     beds: "2 camas de solteiro e 1 cama de casal grande",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo", "Varanda privativa"],
-    bookingLink: "https://www.booking.com/hotel/br/estancia-monte-horebe.pt-br.html?label=estancia-monte-horebe-uYNjynFmZO8Bv6ZjUtddJQS704512921388%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1835805265912%3Alp9222782%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YbC4OlOULAnvcrFmvh1xnqM&sid=7be39d76465260ab76f140f6b428dba9&gclid=CjwKCAiA55rJBhByEiwAFkY1QNXwecpnSh3OLR8HcYEhdUA_PXaU9Sw_Qfim3AIbrPBC3lO-yZW34BoCZgUQAvD_BwE&aid=1726433&ucfs=1&arphpl=1&dest_id=-656419&dest_type=city&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=76f593f33f4d076b&srepoch=1764190961&from=searchresults",
+    bookingLink: BOOKING_URL,
   },
 ]
 

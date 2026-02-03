@@ -27,10 +27,10 @@ const bannerImages = [
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section id="inicio" className="relative w-full min-w-0 h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       <HeroCarousel images={bannerImages} />
       <div className="absolute inset-0 bg-black/40 z-[1]" aria-hidden />
-      <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+      <div className="relative z-10 w-full max-w-full text-center text-white px-4 max-w-4xl mx-auto box-border">
         <p className="text-sm md:text-base tracking-[0.3em] uppercase mb-4 opacity-90">Bem-vindo à</p>
         <h1 className="mb-6 flex justify-center">
           <Image

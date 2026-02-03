@@ -1,10 +1,13 @@
 "use client"
 
 import { MessageCircle } from "lucide-react"
+import { getWhatsAppUrl } from "@/lib/constants"
+
+const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Estância Monte Horebe."
 
 export default function WhatsAppButton() {
   const handleClick = () => {
-    window.open("https://wa.me/5585988662996?text=Olá! Gostaria de saber mais sobre a Estância Monte Horebe.", "_blank")
+    window.open(getWhatsAppUrl(WHATSAPP_MESSAGE), "_blank")
   }
 
   return (

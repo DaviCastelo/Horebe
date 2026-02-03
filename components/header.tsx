@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { BOOKING_URL } from "@/lib/constants"
 
 const navItems = [
   { href: "/#inicio", label: "Início" },
@@ -42,7 +43,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 w-full min-w-0 z-50 transition-all duration-300 ${
         isContatoPage || isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
       }`}
     >
@@ -77,11 +78,7 @@ export default function Header() {
 
           <div className="hidden lg:block">
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <a
-                href="https://www.booking.com/hotel/br/estancia-monte-horebe.pt-br.html?label=estancia-monte-horebe-uYNjynFmZO8Bv6ZjUtddJQS704512921388%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1835805265912%3Alp9222782%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YbC4OlOULAnvcrFmvh1xnqM&sid=7be39d76465260ab76f140f6b428dba9&gclid=CjwKCAiA55rJBhByEiwAFkY1QNXwecpnSh3OLR8HcYEhdUA_PXaU9Sw_Qfim3AIbrPBC3lO-yZW34BoCZgUQAvD_BwE&aid=1726433&ucfs=1&arphpl=1&dest_id=-656419&dest_type=city&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=76f593f33f4d076b&srepoch=1764190961&from=searchresults"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 Reservar
               </a>
             </Button>
@@ -113,7 +110,7 @@ export default function Header() {
             ))}
             <Button asChild className="mt-2 bg-primary hover:bg-primary/90">
               <a
-                href="https://www.booking.com/hotel/br/estancia-monte-horebe.pt-br.html?label=estancia-monte-horebe-uYNjynFmZO8Bv6ZjUtddJQS704512921388%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-1835805265912%3Alp9222782%3Ali%3Adec%3Adm%3Appccp%3DUmFuZG9tSVYkc2RlIyh9YbC4OlOULAnvcrFmvh1xnqM&sid=7be39d76465260ab76f140f6b428dba9&gclid=CjwKCAiA55rJBhByEiwAFkY1QNXwecpnSh3OLR8HcYEhdUA_PXaU9Sw_Qfim3AIbrPBC3lO-yZW34BoCZgUQAvD_BwE&aid=1726433&ucfs=1&arphpl=1&dest_id=-656419&dest_type=city&group_adults=2&req_adults=2&no_rooms=1&group_children=0&req_children=0&hpos=1&hapos=1&sr_order=popularity&srpvid=76f593f33f4d076b&srepoch=1764190961&from=searchresults"
+                href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}

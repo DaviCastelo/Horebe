@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock, Navigation } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { getWhatsAppUrl } from "@/lib/constants"
 
 export default function Location() {
   return (
@@ -98,7 +99,7 @@ export default function Location() {
                   <div>
                     <p className="font-medium text-foreground">Telefone / WhatsApp</p>
                     <a
-                      href="https://wa.me/5585988662996"
+                      href={getWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-muted-foreground hover:text-primary transition-colors"

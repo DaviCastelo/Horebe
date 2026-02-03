@@ -10715,7 +10715,7 @@ function getImageProps(imgProps) {
             "path": ("TURBOPACK compile-time value", "/_next/image"),
             "loader": ("TURBOPACK compile-time value", "default"),
             "dangerouslyAllowSVG": ("TURBOPACK compile-time value", false),
-            "unoptimized": ("TURBOPACK compile-time value", true),
+            "unoptimized": ("TURBOPACK compile-time value", false),
             "domains": ("TURBOPACK compile-time value", []),
             "remotePatterns": ("TURBOPACK compile-time value", [
                 ("TURBOPACK compile-time value", {

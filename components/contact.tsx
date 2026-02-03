@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Coffee, Send } from "lucide-react"
+import { getWhatsAppUrl } from "@/lib/constants"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ export default function Contact() {
     e.preventDefault()
     // Handle form submission - could integrate with WhatsApp or email
     const whatsappMessage = `Olá! Gostaria de fazer uma reserva:\n\nNome: ${formData.name}\nE-mail: ${formData.email}\nTelefone: ${formData.phone}\nCheck-in: ${formData.checkin}\nCheck-out: ${formData.checkout}\nHóspedes: ${formData.guests}\nMensagem: ${formData.message}`
-    window.open(`https://wa.me/5585988662996?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
+    window.open(getWhatsAppUrl(whatsappMessage), "_blank")
   }
 
   return (
