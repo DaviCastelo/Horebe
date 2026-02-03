@@ -4,8 +4,8 @@ import { getWhatsAppUrl } from "@/lib/constants"
 
 export default function Location() {
   return (
-    <section id="localizacao" className="py-20 lg:py-32 bg-muted">
-      <div className="container mx-auto px-4">
+    <section id="localizacao" className="py-20 lg:py-32 bg-muted overflow-x-hidden">
+      <div className="container mx-auto px-4 w-full min-w-0">
         <div className="text-center mb-16">
           <span className="text-primary text-sm tracking-[0.2em] uppercase font-medium">Localização</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mt-2 mb-4 text-foreground">
@@ -17,18 +17,19 @@ export default function Location() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          <div>
-            <div className="aspect-video lg:aspect-auto lg:h-full min-h-[400px] rounded-lg overflow-hidden shadow-lg">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15925.374566855745!2d-38.9638578!3d-4.2900735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7bf3d2d58282381%3A0x8a235d788993801e!2sEst%C3%A2ncia%20Monte%20Horebe!5e0!3m2!1spt-BR!2sbr!4v1735056000000!5m2!1spt-BR!2sbr"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Localização da Estância Monte Horebe"
-              />
+          <div className="w-full min-w-0">
+            <div className="relative w-full overflow-hidden rounded-lg shadow-lg bg-muted">
+              {/* Responsive map: 4/3 on mobile (more vertical space), 16/9 on desktop; iframe forced to fill box */}
+              <div className="relative w-full aspect-[4/3] sm:aspect-video lg:min-h-[400px] lg:aspect-auto lg:h-[400px]">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15925.374566855745!2d-38.9638578!3d-4.2900735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7bf3d2d58282381%3A0x8a235d788993801e!2sEst%C3%A2ncia%20Monte%20Horebe!5e0!3m2!1spt-BR!2sbr!4v1735056000000!5m2!1spt-BR!2sbr"
+                  className="absolute inset-0 h-full w-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localização da Estância Monte Horebe"
+                />
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-4">
               <Button
