@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/#acomodacoes", label: "Acomodações" },
   { href: "/#comodidades", label: "Comodidades" },
   { href: "/#galeria", label: "Galeria" },
+  { href: "/#agenda-cultural", label: "Agenda Cultural" },
   { href: "/#localizacao", label: "Localização" },
   { href: "/#politicas", label: "Políticas" },
   { href: "/dicas", label: "Dicas" },
@@ -21,11 +22,11 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <Image
-              src="/images/logo-20monte-20horebe.png"
-              alt="Estância Monte Horebe"
-              width={160}
-              height={80}
-              className="h-16 w-auto mb-4 brightness-0 invert"
+              src="/images/logo-mono.png"
+              alt="Estância Monte Horebe - Mulungu, CE"
+              width={200}
+              height={100}
+              className="h-20 w-auto mb-4 object-contain"
             />
             <p className="text-background/70 text-sm">
               Seu refúgio na serra cearense. Natureza, conforto e tranquilidade em Mulungu-CE.

@@ -48,13 +48,13 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Nossa história começa em um momento de grandes transformações. Durante o período pandêmico, o que antes era apenas uma casa de veraneio da família se transformou, pelas mãos de Camila e Crescêncio Júnior, em um refúgio de hospitalidade, afeto e sustentabilidade.
+                Nossa história começa em um momento de grandes transformações. Durante o período pandêmico, o que antes era apenas uma casa de veraneio da família se transformou, em um refúgio de hospitalidade, afeto e sustentabilidade.
               </p>
               <p>
                 Os anfitriões, mesmo sem experiência prévia como proprietários de pousada, trouxeram consigo vivências como hóspedes, conhecimento administrativo e, principalmente, muita dedicação. Assim nasceu a Estância Monte Horebe: um lugar pensado para que cada pessoa se sinta acolhida como em casa.
               </p>
               <p>
-                Localizados em uma área privilegiada em meio à Mata Atlântica do Maciço de Baturité, nossa missão é oferecer conforto, natureza exuberante e um atendimento próximo e diferenciado.
+                Localizados em uma área privilegiada em meio à Mata Atlântica do Maciço de Baturité, nossa missão é oferecer uma experiência de conforto, natureza exuberante e um atendimento próximo e humanizado.
               </p>
             </div>
 

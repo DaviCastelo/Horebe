@@ -1,10 +1,12 @@
-import { CheckCircle2, Heart, Baby, CreditCard, Calendar, Shirt, UtensilsCrossed, Volume2, Cigarette } from "lucide-react"
+import Link from "next/link"
+import { Heart, Baby, CreditCard, Calendar, Shirt, UtensilsCrossed, Volume2, Cigarette, ExternalLink } from "lucide-react"
 
 const policies = [
   {
     icon: Heart,
     title: "Pet Friendly",
-    description: "Somos um equipamento pet friendly, favor consultar o manual de boas práticas dos pet's",
+    description: "Somos um equipamento pet friendly.",
+    manualLink: "/manual-pet-friendly.pdf",
   },
   {
     icon: Baby,
@@ -19,7 +21,7 @@ const policies = [
   {
     icon: Calendar,
     title: "Cancelamentos",
-    description: "Cancelamentos reembolsáveis até 14 dias da reserva",
+    description: "Cancelamentos reembolsáveis até 14 dias antecedentes ao check in",
   },
   {
     icon: Shirt,
@@ -68,6 +70,17 @@ export default function Policies() {
               </div>
               <h3 className="font-semibold text-lg mb-2 text-foreground">{policy.title}</h3>
               <p className="text-sm text-muted-foreground">{policy.description}</p>
+              {"manualLink" in policy && policy.manualLink && (
+                <Link
+                  href={policy.manualLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 mt-3 text-sm font-medium text-primary hover:underline"
+                >
+                  Manual de boas práticas dos pet&apos;s
+                  <ExternalLink className="w-4 h-4" />
+                </Link>
+              )}
             </div>
           ))}
         </div>

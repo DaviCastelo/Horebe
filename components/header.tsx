@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
@@ -12,6 +13,7 @@ const navItems = [
   { href: "/#acomodacoes", label: "Acomodações" },
   { href: "/#comodidades", label: "Comodidades" },
   { href: "/#galeria", label: "Galeria" },
+  { href: "/#agenda-cultural", label: "Agenda Cultural" },
   { href: "/#localizacao", label: "Localização" },
   { href: "/#politicas", label: "Políticas" },
   { href: "/dicas", label: "Dicas" },
@@ -19,8 +21,10 @@ const navItems = [
 ]
 
 export default function Header() {
+  const pathname = usePathname()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const isContatoPage = pathname === "/contato"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,10 +34,16 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const navTextClass = isContatoPage
+    ? "text-foreground hover:text-primary"
+    : isScrolled
+      ? "text-foreground hover:text-primary"
+      : "text-white hover:text-primary"
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+        isContatoPage || isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -49,17 +59,20 @@ export default function Header() {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${
-                  isScrolled ? "text-foreground" : "text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = pathname === "/contato" && item.href === "/contato"
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-sm font-medium tracking-wide transition-colors ${navTextClass} ${
+                    isActive ? "text-primary" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </nav>
 
           <div className="hidden lg:block">
@@ -76,9 +89,9 @@ export default function Header() {
 
           <button className="lg:hidden p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Menu">
             {isMobileMenuOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              <X className={`w-6 h-6 ${isContatoPage || isScrolled ? "text-foreground" : "text-white"}`} />
             ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+              <Menu className={`w-6 h-6 ${isContatoPage || isScrolled ? "text-foreground" : "text-white"}`} />
             )}
           </button>
         </div>
