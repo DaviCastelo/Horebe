@@ -13,14 +13,14 @@ export interface EventoAgenda {
 
 export const agendaCultural: EventoAgenda[] = [
   {
-    titulo: "Exemplo: Festival de Inverno de Guaramiranga",
+    titulo: "Festival de Inverno de Guaramiranga",
     data: "Julho 2025",
     local: "Guaramiranga, CE",
     descricao: "Festival de música e cultura na serra.",
     link: "https://www.instagram.com/guaramiranga",
   },
   {
-    titulo: "Exemplo: Feira de Artesanato",
+    titulo: "Feira de Artesanato",
     data: "Sábados e Domingos",
     local: "Centro de Mulungu",
     descricao: "Feira com artesanato local e comidas típicas.",

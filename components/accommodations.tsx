@@ -1,8 +1,12 @@
+"use client"
+
 import Image from "next/image"
 import { Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { BOOKING_URL } from "@/lib/constants"
+import { getWhatsAppUrl } from "@/lib/constants"
+
+const WHATSAPP_RESERVA = "Olá! Gostaria de fazer uma reserva na Estância Monte Horebe."
 
 const rooms = [
   {
@@ -12,7 +16,7 @@ const rooms = [
     capacity: "2 pessoas",
     beds: "1 cama de casal",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo"],
-    bookingLink: BOOKING_URL,
+    reservaLink: getWhatsAppUrl(WHATSAPP_RESERVA),
   },
   {
     name: "Quarto Triplo",
@@ -21,7 +25,7 @@ const rooms = [
     capacity: "3 pessoas",
     beds: "1 cama de solteiro e 1 cama de casal",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo"],
-    bookingLink: BOOKING_URL,
+    reservaLink: getWhatsAppUrl(WHATSAPP_RESERVA),
   },
   {
     name: "Quarto Quádruplo",
@@ -30,7 +34,7 @@ const rooms = [
     capacity: "4 pessoas",
     beds: "2 camas de solteiro e 1 cama de casal grande",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo", "Varanda privativa"],
-    bookingLink: BOOKING_URL,
+    reservaLink: getWhatsAppUrl(WHATSAPP_RESERVA),
   },
 ]
 
@@ -90,9 +94,10 @@ export default function Accommodations() {
                   className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
                 >
                   <a
-                    href={room.bookingLink}
+                    href={room.reservaLink}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     Reservar
                   </a>

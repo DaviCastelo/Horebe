@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
+import { getWhatsAppUrl } from "@/lib/constants"
 import {
   Carousel,
   CarouselContent,
@@ -31,29 +32,36 @@ export default function Hero() {
       <HeroCarousel images={bannerImages} />
       <div className="absolute inset-0 bg-black/40 z-[1]" aria-hidden />
       <div className="relative z-10 w-full max-w-full text-center text-white px-4 max-w-4xl mx-auto box-border">
-        <p className="text-sm md:text-base tracking-[0.3em] uppercase mb-4 opacity-90">Bem-vindo à</p>
+        <p className="text-base md:text-lg lg:text-xl xl:text-2xl tracking-[0.3em] uppercase mb-4 opacity-90">Bem-vindo à</p>
         <h1 className="mb-6 flex justify-center">
           <Image
             src="/images/logo-mono.png"
             alt="Estância Monte Horebe - Mulungu, CE"
             width={400}
             height={160}
-            className="h-20 w-auto md:h-28 lg:h-32 object-contain"
+            className="h-24 w-auto md:h-32 lg:h-40 xl:h-44 object-contain"
             priority
           />
         </h1>
-        <p className="text-lg md:text-xl lg:text-2xl mb-8 opacity-90 max-w-2xl mx-auto text-pretty">
+        <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl mb-8 opacity-90 max-w-3xl mx-auto text-pretty">
           Natureza, conforto e tranquilidade em Mulungu-CE
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-base px-8">
-            <Link href="/contato">Fazer Reserva</Link>
+          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-base md:text-lg px-8 md:px-10 h-12 md:h-14">
+            <a
+              href={getWhatsAppUrl("Olá! Gostaria de fazer uma reserva na Estância Monte Horebe.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Fazer Reserva
+            </a>
           </Button>
           <Button
             asChild
             size="lg"
             variant="outline"
-            className="border-white text-white hover:bg-white/10 text-base px-8 bg-transparent"
+            className="border-white text-white hover:bg-white/10 text-base md:text-lg px-8 md:px-10 h-12 md:h-14 bg-transparent"
           >
             <Link href="#sobre">Conhecer Mais</Link>
           </Button>
@@ -71,7 +79,7 @@ export default function Hero() {
 }
 
 function HeroCarousel({ images }: { images: readonly string[] }) {
-  const [api, setApi] = React.useState<CarouselApi>(null)
+  const [api, setApi] = React.useState<CarouselApi | null>(null)
 
   const scrollNext = useCallback(() => {
     api?.scrollNext()
@@ -90,11 +98,11 @@ function HeroCarousel({ images }: { images: readonly string[] }) {
     <Carousel
       setApi={setApi}
       opts={{ loop: true, align: "start" }}
-      className="absolute inset-0 w-full h-full"
+      className="absolute inset-0 w-full h-full overflow-hidden"
     >
-      <CarouselContent className="h-full">
+      <CarouselContent className="h-full ml-0">
         {images.map((src) => (
-          <CarouselItem key={src} className="h-full pl-0">
+          <CarouselItem key={src} className="h-full basis-full min-w-full pl-0 pr-0">
             <div
               className="h-full w-full bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url('${src}')` }}

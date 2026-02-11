@@ -3,11 +3,12 @@
 import { MessageCircle } from "lucide-react"
 import { getWhatsAppUrl } from "@/lib/constants"
 
-const WHATSAPP_MESSAGE = "Olá! Gostaria de saber mais sobre a Estância Monte Horebe."
+const WHATSAPP_RESERVA = "Olá! Gostaria de fazer uma reserva na Estância Monte Horebe."
 
 export default function WhatsAppButton() {
-  const handleClick = () => {
-    window.open(getWhatsAppUrl(WHATSAPP_MESSAGE), "_blank")
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    window.open(getWhatsAppUrl(WHATSAPP_RESERVA), "_blank")
   }
 
   return (

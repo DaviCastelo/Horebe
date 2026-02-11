@@ -6,7 +6,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { BOOKING_URL } from "@/lib/constants"
+import { getWhatsAppUrl } from "@/lib/constants"
+
+const WHATSAPP_RESERVA = "Olá! Gostaria de fazer uma reserva na Estância Monte Horebe."
 
 const navItems = [
   { href: "/#inicio", label: "Início" },
@@ -78,7 +80,12 @@ export default function Header() {
 
           <div className="hidden lg:block">
             <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                href={getWhatsAppUrl(WHATSAPP_RESERVA)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+              >
                 Reservar
               </a>
             </Button>
@@ -110,10 +117,13 @@ export default function Header() {
             ))}
             <Button asChild className="mt-2 bg-primary hover:bg-primary/90">
               <a
-                href={BOOKING_URL}
+                href={getWhatsAppUrl(WHATSAPP_RESERVA)}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsMobileMenuOpen(false)
+                }}
               >
                 Reservar
               </a>
