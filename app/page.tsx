@@ -5,6 +5,7 @@ import Accommodations from "@/components/accommodations"
 import Amenities from "@/components/amenities"
 import Gallery from "@/components/gallery"
 import AgendaCultural from "@/components/agenda-cultural"
+import DatasEspeciais from "@/components/datas-especiais"
 import Location from "@/components/location"
 import Testimonials from "@/components/testimonials"
 import Policies from "@/components/policies"
@@ -21,6 +22,7 @@ export default function Home() {
       <Amenities />
       <Gallery />
       <AgendaCultural />
+      <DatasEspeciais />
       <Testimonials />
       <Location />
       <Policies />

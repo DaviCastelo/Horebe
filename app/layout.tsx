@@ -26,6 +26,10 @@ export const metadata: Metadata = {
   description:
     "Seu refúgio na serra cearense. Natureza, conforto e tranquilidade em Mulungu, próximo a Guaramiranga. Café da manhã incluso.",
   keywords: "pousada, Mulungu, Ceará, Guaramiranga, serra, natureza, hospedagem, café da manhã",
+  icons: {
+    icon: "/images/logo-20monte-20horebe.png",
+    apple: "/images/logo-20monte-20horebe.png",
+  },
 }
 
 export default function RootLayout({

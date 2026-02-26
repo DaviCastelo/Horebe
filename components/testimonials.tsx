@@ -11,6 +11,8 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel"
 
+// Depoimentos – você pode substituir por avaliações reais do Booking ou Google
+// Link: https://www.booking.com/hotel/br/estancia-monte-horebe.pt-br.html (aba Avaliações)
 const testimonials = [
   {
     name: "Maria Silva",
@@ -42,12 +44,72 @@ const testimonials = [
     rating: 5,
     text: "Experiência maravilhosa do início ao fim. O lugar transmite uma energia única e o atendimento é impecável. Com certeza voltaremos!",
   },
+  {
+    name: "Carlos M.",
+    location: "Fortaleza, CE",
+    rating: 5,
+    text: "Pousada excelente! Quartos limpos, café da manhã delicioso e a equipe muito atenciosa. Recomendo demais.",
+  },
+  {
+    name: "Fernanda L.",
+    location: "Natal, RN",
+    rating: 5,
+    text: "Ambiente acolhedor e tranquilo. Perfeito para descansar. Já indicamos para vários amigos.",
+  },
+  {
+    name: "Roberto S.",
+    location: "Fortaleza, CE",
+    rating: 5,
+    text: "Melhor custo-benefício da região. Localização privilegiada e atendimento de primeira.",
+  },
+  {
+    name: "Patricia R.",
+    location: "Fortaleza, CE",
+    rating: 5,
+    text: "Tudo perfeito: limpeza, café da manhã e a simpatia dos anfitriões. A pousada superou as expectativas. Voltaremos!",
+  },
+  {
+    name: "Ricardo e Sandra",
+    location: "Salvador, BA",
+    rating: 5,
+    text: "Fim de semana incrível na serra. Quarto aconchegante, café da manhã farto e muito sossego. Recomendamos a todos.",
+  },
+  {
+    name: "Luciana M.",
+    location: "Fortaleza, CE",
+    rating: 5,
+    text: "Pousada maravilhosa! Muito limpa, organizada e com uma equipe que faz a gente se sentir em casa. Adoramos.",
+  },
+  {
+    name: "Marcos T.",
+    location: "Brasília, DF",
+    rating: 5,
+    text: "Vale muito a pena. Boa localização, perto de Guaramiranga e Mulungu. Café da manhã caprichado e quartos confortáveis.",
+  },
+  {
+    name: "Carla e Felipe",
+    location: "Fortaleza, CE",
+    rating: 5,
+    text: "Segunda vez que nos hospedamos e foi tão bom quanto a primeira. Atendimento de excelência e ambiente muito agradável.",
+  },
+  {
+    name: "Andréa P.",
+    location: "Recife, PE",
+    rating: 5,
+    text: "Lugar especial para descansar. A natureza ao redor e o carinho no atendimento fazem toda a diferença. Parabéns à equipe!",
+  },
+  {
+    name: "José Carlos",
+    location: "Fortaleza, CE",
+    rating: 5,
+    text: "Excelente opção na região. Café da manhã variado, quartos limpos e preço justo. Já estamos planejando a próxima visita.",
+  },
 ]
 
 const AUTOPLAY_INTERVAL_MS = 7000 // 7 segundos
 
 export default function Testimonials() {
-  const [api, setApi] = React.useState<CarouselApi>(null)
+  const [api, setApi] = React.useState<CarouselApi | null>(null)
 
   const scrollNext = useCallback(() => {
     if (!api) return
@@ -69,7 +131,7 @@ export default function Testimonials() {
         <div className="text-center mb-16">
           <span className="text-primary text-sm tracking-[0.2em] uppercase font-medium">Depoimentos</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mt-2 mb-4 text-foreground">
-            O Que Nossos Hóspedes Dizem
+            Quem Conhece Não Esquece
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             A satisfação dos nossos hóspedes é nossa maior recompensa.

@@ -1,9 +1,25 @@
+"use client"
+
+import * as React from "react"
+import Image from "next/image"
 import { Calendar, MapPin, ExternalLink } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { agendaCultural } from "@/lib/agenda-cultural"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
+
+const eventPlaceholderImage = "/images/424902850.jpg"
 
 export default function AgendaCultural() {
   if (agendaCultural.length === 0) return null
+
+  const carouselImages = agendaCultural
+    .map((e) => e.imagem)
+    .filter(Boolean) as string[]
+  const imagesToShow = carouselImages.length > 0 ? carouselImages : [eventPlaceholderImage]
 
   return (
     <section id="agenda-cultural" className="py-20 lg:py-32 bg-muted">
@@ -16,6 +32,26 @@ export default function AgendaCultural() {
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Confira os eventos e programações da região durante sua estadia.
           </p>
+        </div>
+
+        {/* Carrossel de fotos dos eventos */}
+        <div className="max-w-4xl mx-auto mb-12">
+          <Carousel opts={{ loop: true }} className="w-full">
+            <CarouselContent className="ml-0">
+              {imagesToShow.map((src) => (
+                <CarouselItem key={src} className="pl-0 basis-full min-w-full">
+                  <div className="aspect-video relative rounded-lg overflow-hidden">
+                    <Image
+                      src={src}
+                      alt="Evento da região"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">

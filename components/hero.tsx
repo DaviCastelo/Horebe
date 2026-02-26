@@ -5,7 +5,7 @@ import { useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Coffee, Cloud, Heart, Car } from "lucide-react"
 import { getWhatsAppUrl } from "@/lib/constants"
 import {
   Carousel,
@@ -65,6 +65,24 @@ export default function Hero() {
           >
             <Link href="#sobre">Conhecer Mais</Link>
           </Button>
+        </div>
+        <div className="flex flex-wrap justify-center gap-6 md:gap-10 mt-10 text-white/90 text-sm md:text-base">
+          <span className="flex items-center gap-2">
+            <Coffee className="w-5 h-5 flex-shrink-0" aria-hidden />
+            Café da manhã incluso
+          </span>
+          <span className="flex items-center gap-2">
+            <Cloud className="w-5 h-5 flex-shrink-0" aria-hidden />
+            Clima de serra
+          </span>
+          <span className="flex items-center gap-2">
+            <Heart className="w-5 h-5 flex-shrink-0" aria-hidden />
+            Ambiente familiar
+          </span>
+          <span className="flex items-center gap-2">
+            <Car className="w-5 h-5 flex-shrink-0" aria-hidden />
+            Estacionamento
+          </span>
         </div>
       </div>
       <Link

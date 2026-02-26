@@ -53,7 +53,7 @@ export default function Gallery() {
         <div className="text-center mb-16">
           <span className="text-primary text-sm tracking-[0.2em] uppercase font-medium">Galeria</span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mt-2 mb-4 text-foreground">
-            Momentos na Monte Horebe
+            Momentos na Estância
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Conheça um pouco da nossa estrutura e das paisagens deslumbrantes que você encontrará aqui.

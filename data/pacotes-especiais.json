@@ -1,0 +1,26 @@
+[
+  {
+    "id": "exemplo-reveillon",
+    "titulo": "Réveillon",
+    "datas": "31/12 a 01/01",
+    "descricao": "Pacote especial de Réveillon com café da manhã incluso.",
+    "ativo": true,
+    "ordem": 1
+  },
+  {
+    "id": "exemplo-carnaval",
+    "titulo": "Carnaval",
+    "datas": "Datas do Carnaval",
+    "descricao": "Folia na serra com conforto. Consulte disponibilidade.",
+    "ativo": true,
+    "ordem": 2
+  },
+  {
+    "id": "exemplo-semana-santa",
+    "titulo": "Semana Santa",
+    "datas": "Feriado móvel",
+    "descricao": "Pacote para Semana Santa. Ideal para descanso em família.",
+    "ativo": true,
+    "ordem": 3
+  }
+]

@@ -1,10 +1,57 @@
 "use client"
 
+import * as React from "react"
+import { useEffect, useCallback } from "react"
 import Image from "next/image"
 import { Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { getWhatsAppUrl } from "@/lib/constants"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel"
+
+const AUTOPLAY_INTERVAL_MS = 5000
+
+function RoomCarousel({ images, roomName }: { images: string[]; roomName: string }) {
+  const [api, setApi] = React.useState<CarouselApi | null>(null)
+
+  const scrollNext = useCallback(() => {
+    api?.scrollNext()
+    if (api?.canScrollNext() === false) {
+      api?.scrollTo(0)
+    }
+  }, [api])
+
+  useEffect(() => {
+    if (!api) return
+    const interval = setInterval(scrollNext, AUTOPLAY_INTERVAL_MS)
+    return () => clearInterval(interval)
+  }, [api, scrollNext])
+
+  const list = images?.length ? images : ["/placeholder.svg"]
+  return (
+    <Carousel setApi={setApi} opts={{ loop: true }} className="h-full w-full">
+      <CarouselContent className="h-full ml-0">
+        {list.map((src) => (
+          <CarouselItem key={src} className="h-full basis-full min-w-full pl-0 pr-0">
+            <div className="relative w-full h-full">
+              <Image
+                src={src}
+                alt={roomName}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  )
+}
 
 const WHATSAPP_RESERVA = "Olá! Gostaria de fazer uma reserva na Estância Monte Horebe."
 
@@ -12,7 +59,7 @@ const rooms = [
   {
     name: "Suíte Dupla Standard",
     description: "Suíte aconchegante com 1 cama de casal, ideal para casais. Ambiente confortável com banheiro privativo, Wi-Fi gratuito e frigobar.",
-    image: "/quarto-duplo.jpg",
+    images: ["/quarto-duplo.jpg"],
     capacity: "2 pessoas",
     beds: "1 cama de casal",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo"],
@@ -21,7 +68,7 @@ const rooms = [
   {
     name: "Quarto Triplo",
     description: "Quarto espaçoso com 1 cama de solteiro e 1 cama de casal, perfeito para famílias pequenas ou grupos de amigos.",
-    image: "/quarto-triplo.jpg",
+    images: ["/quarto-triplo.jpg", "/images/tri.jpg"],
     capacity: "3 pessoas",
     beds: "1 cama de solteiro e 1 cama de casal",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo"],
@@ -30,7 +77,7 @@ const rooms = [
   {
     name: "Quarto Quádruplo",
     description: "Acomodação ampla com 2 camas de solteiro e 1 cama de casal grande, ideal para famílias maiores ou grupos.",
-    image: "/quarto-quadruplo.jpg",
+    images: ["/images/mulungu-quadruplo.jpg", "/images/quad.jpg", "/images/quadruplo.jpg"],
     capacity: "4 pessoas",
     beds: "2 camas de solteiro e 1 cama de casal grande",
     amenities: ["Wi-Fi gratuito", "Frigobar", "Banheiro privativo", "Varanda privativa"],
@@ -57,12 +104,7 @@ export default function Accommodations() {
           {rooms.map((room) => (
             <Card key={room.name} className="overflow-hidden group border-0 shadow-lg">
               <div className="aspect-[3/2] relative overflow-hidden">
-                <Image
-                  src={room.image || "/placeholder.svg"}
-                  alt={room.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <RoomCarousel images={room.images ?? []} roomName={room.name} />
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-serif font-bold mb-2 text-foreground">{room.name}</h3>
@@ -99,7 +141,7 @@ export default function Accommodations() {
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    Reservar
+                    Consultar Disponibilidade
                   </a>
                 </Button>
               </CardContent>

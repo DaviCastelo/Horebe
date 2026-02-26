@@ -19,7 +19,7 @@ const navItems = [
   { href: "/#agenda-cultural", label: "Agenda Cultural" },
   { href: "/#localizacao", label: "Localização" },
   { href: "/#politicas", label: "Políticas" },
-  { href: "/dicas", label: "Dicas" },
+  { href: "/rota-verde-cafe", label: "Rota Verde do Café" },
   { href: "/contato", label: "Contato" },
 ]
 
@@ -86,7 +86,7 @@ export default function Header() {
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
               >
-                Reservar
+                Consultar Disponibilidade
               </a>
             </Button>
           </div>
@@ -125,7 +125,7 @@ export default function Header() {
                   setIsMobileMenuOpen(false)
                 }}
               >
-                Reservar
+                Consultar Disponibilidade
               </a>
             </Button>
           </nav>

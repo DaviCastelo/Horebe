@@ -1,4 +1,4 @@
-import { Coffee, Wifi, Car, TreePine, Sun, Utensils, MapPin, Users } from "lucide-react"
+import { Coffee, Wifi, Car, TreePine, Sun, MapPin, Users, BadgeDollarSign } from "lucide-react"
 
 const amenities = [
   {
@@ -27,9 +27,9 @@ const amenities = [
     description: "Espaços ao ar livre para contemplação e descanso.",
   },
   {
-    icon: Utensils,
-    title: "Cozinha Regional",
-    description: "Sabores autênticos da culinária cearense.",
+    icon: BadgeDollarSign,
+    title: "Custo / Benefício",
+    description: "Excelente custo/benefício entre as opções de hospedagem na região.",
   },
   {
     icon: MapPin,

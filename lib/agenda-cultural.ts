@@ -9,6 +9,7 @@ export interface EventoAgenda {
   local?: string
   descricao?: string
   link?: string
+  imagem?: string
 }
 
 export const agendaCultural: EventoAgenda[] = [
@@ -20,10 +21,27 @@ export const agendaCultural: EventoAgenda[] = [
     link: "https://www.instagram.com/guaramiranga",
   },
   {
-    titulo: "Feira de Artesanato",
-    data: "Sábados e Domingos",
-    local: "Centro de Mulungu",
-    descricao: "Feira com artesanato local e comidas típicas.",
+    titulo: "Chorinho na Praça",
+    data: "Todo 1º sábado de cada mês",
+    local: "Praça do Centro Cultural de Mulungu",
+    descricao: "Música ao vivo com chorinho na praça.",
   },
-  // Adicione mais eventos abaixo. Para remover, apague o bloco correspondente.
+  {
+    titulo: "Samba na Praça",
+    data: "Todo 3º sábado de cada mês",
+    local: "Praça do Centro Cultural de Mulungu",
+    descricao: "Samba na praça do Centro Cultural de Mulungu.",
+  },
+  {
+    titulo: "Festival de Jazz e Blues",
+    data: "No Carnaval",
+    local: "Guaramiranga, CE",
+    descricao: "Festival de jazz e blues durante o Carnaval em Guaramiranga.",
+  },
+  {
+    titulo: "Feira da Agricultura Familiar",
+    data: "Todo domingo",
+    local: "Calçadão de Mulungu",
+    descricao: "Feira com produtos da agricultura familiar e artesanato local.",
+  },
 ]

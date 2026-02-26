@@ -1,6 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Instagram, Facebook, Mail, Phone, MapPin } from "lucide-react"
+import { Instagram, Facebook, Mail, MessageCircle, MapPin } from "lucide-react"
+
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/place/Est%C3%A2ncia+Monte+Horebe/@-4.2900735,-38.9687287,17z/data=!3m1!4b1!4m9!3m8!1s0x7bf3d2d58282381:0x8a235d788993801e!5m2!4m1!1i2!8m2!3d-4.2900735!4d-38.9638578!16s%2Fg%2F11n06k8cky?entry=ttu"
 import { getWhatsAppUrl } from "@/lib/constants"
 
 const navLinks = [
@@ -12,7 +15,7 @@ const navLinks = [
   { href: "/#agenda-cultural", label: "Agenda Cultural" },
   { href: "/#localizacao", label: "Localização" },
   { href: "/#politicas", label: "Políticas" },
-  { href: "/dicas", label: "Dicas" },
+  { href: "/rota-verde-cafe", label: "Rota Verde do Café" },
   { href: "/contato", label: "Contato" },
 ]
 
@@ -29,8 +32,11 @@ export default function Footer() {
               height={100}
               className="h-20 w-auto mb-4 object-contain"
             />
-            <p className="text-background/70 text-sm">
-              Seu refúgio na serra cearense. Natureza, conforto e tranquilidade em Mulungu-CE.
+            <p className="text-background/70 text-sm font-serif font-semibold">
+              Quem Conhece Não Esquece
+            </p>
+            <p className="text-background/60 text-xs mt-1">
+              Natureza, conforto e tranquilidade em Mulungu-CE.
             </p>
           </div>
 
@@ -52,17 +58,22 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Contato</h3>
             <div className="space-y-3 text-sm">
-              <p className="flex items-start gap-2 text-background/70">
+              <a
+                href={GOOGLE_MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 text-background/70 hover:text-background transition-colors"
+              >
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
                 Mulungu, Ceará - Brasil
-              </p>
+              </a>
               <a
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-background/70 hover:text-background transition-colors"
               >
-                <Phone className="w-4 h-4 flex-shrink-0" />
+                <MessageCircle className="w-4 h-4 flex-shrink-0" />
                 (85) 98866-2996
               </a>
               <a
@@ -102,7 +113,10 @@ export default function Footer() {
 
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-background/60">
           <p>&copy; {new Date().getFullYear()} Estância Monte Horebe. Todos os direitos reservados.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6 items-center">
+            <Link href="/admin" className="hover:text-background transition-colors">
+              Admin
+            </Link>
             <Link href="#" className="hover:text-background transition-colors">
               Política de Privacidade
             </Link>

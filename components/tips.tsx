@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Utensils, MapPin, Coffee, Mountain, Camera, TreePine, Clock, Phone, ExternalLink } from "lucide-react"
+import { MapPin, Coffee, Mountain, Camera, TreePine, Phone } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
@@ -118,56 +118,11 @@ export default function Tips() {
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             Durante sua estadia na Estância Monte Horebe, aproveite para conhecer as belezas e atrações que cercam nossa
-            pousada. A poucos minutos, você encontrará trilhas em meio à natureza, mirantes com vistas incríveis, o charme
-            das praças de Mulungu e Guaramiranga, além de restaurantes e cafés que valorizam a gastronomia local.
+            pousada.
           </p>
         </div>
 
-        {/* Gastronomia */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Utensils className="w-8 h-8 text-primary" />
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground">Nossa Gastronomia</h3>
-            </div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Estamos passando por alguns ajustes em nosso cardápio, favor certificar-se com o atendente na recepção o que
-              está saindo no momento.
-            </p>
-            <div className="flex items-center justify-center gap-4 mt-4">
-              <div className="flex items-center gap-2 text-primary">
-                <Clock className="w-5 h-5" />
-                <span className="font-medium">Horários: De 7h às 22h</span>
-              </div>
-              <Button
-                asChild
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              >
-                <a href="https://estanciabistro.menudino.com" target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Ver Cardápio
-                </a>
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        {/* O que fazer */}
-        <div className="mb-20 bg-muted py-16 px-4 rounded-lg">
-          <div className="text-center mb-12">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Mountain className="w-8 h-8 text-primary" />
-              <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground">O Que Fazer na Serra</h3>
-            </div>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Você está em uma região que reserva experiências incríveis para todos os estilos. Trilhas em meio à natureza,
-              mirantes com vistas de tirar o fôlego, eventos culturais, gastronomia regional e clima sempre agradável fazem
-              deste destino um convite para se desconectar da rotina e viver momentos especiais.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {attractions.map((attraction) => {
               const IconComponent = attraction.icon
               return (
@@ -220,7 +175,6 @@ export default function Tips() {
                 </Card>
               )
             })}
-          </div>
         </div>
 
         {/* Rota Verde do Café */}

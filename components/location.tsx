@@ -12,7 +12,7 @@ export default function Location() {
             Como Chegar
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Estamos localizados em Mulungu, a cerca de 100km de Fortaleza, próximo à famosa Guaramiranga.
+            Estamos a 115 km de Fortaleza. A Estância Monte Horebe está localizada na Rodovia CE-065, entre as cidades de Mulungu (3 km) e Guaramiranga (7 km), bem pertinho das principais cachoeiras e atrações da região. Tempo de viagem partindo de Fortaleza: aproximadamente 2 horas.
           </p>
         </div>
 
@@ -143,9 +143,7 @@ export default function Location() {
             <div className="bg-card p-6 rounded-lg shadow-sm">
               <h4 className="font-semibold text-foreground mb-2">Como Chegar</h4>
               <p className="text-sm text-muted-foreground">
-                Saindo de Fortaleza, siga pela CE-060 em direção a Baturité. Continue até Mulungu, seguindo as placas
-                indicativas. O trajeto dura aproximadamente 1h30. A pousada fica a poucos minutos do centro de Mulungu,
-                em área de fácil acesso.
+                A Estância Monte Horebe está localizada na Rodovia CE-065, entre as cidades de Mulungu (3 km) e Guaramiranga (7 km), bem pertinho das principais cachoeiras e atrações da região. A título de referência, o tempo de viagem partindo de Fortaleza é de aproximadamente 2 horas.
               </p>
             </div>
           </div>

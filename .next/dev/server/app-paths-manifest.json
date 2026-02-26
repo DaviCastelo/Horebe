@@ -1,3 +1,9 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/api/admin/login/route": "app/api/admin/login/route.js",
+  "/api/admin/me/route": "app/api/admin/me/route.js",
+  "/api/admin/pacotes-especiais/route": "app/api/admin/pacotes-especiais/route.js",
+  "/api/pacotes-especiais/route": "app/api/pacotes-especiais/route.js",
   "/page": "app/page.js"
 }

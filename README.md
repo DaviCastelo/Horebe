@@ -170,8 +170,12 @@ pnpm start
 |----------|----------|-------------|
 | `NEXT_PUBLIC_BOOKING_URL` | No | Full URL for the Booking.com property page. Default: current Estância Monte Horebe link in `lib/constants.ts`. |
 | `NEXT_PUBLIC_WHATSAPP` | No | Main WhatsApp number (E.164 without `+`). Default: `5585988662996`. |
+| `ADMIN_PASSWORD` | Sim (para /admin) | Senha da área Admin. **Nunca commite** `.env.local` nem coloque a senha no código. Defina apenas em `.env.local`. |
+| `ADMIN_SESSION_SECRET` | Sim (para /admin) | String aleatória com pelo menos 32 caracteres para assinar o cookie de sessão. Defina em `.env.local`. |
 
 Used in `lib/constants.ts`; all booking and WhatsApp links/buttons consume these via `BOOKING_URL` and `getWhatsAppUrl()`. See `.env.example` for a template.
+
+**Área Admin (`/admin`):** Permite editar pacotes de datas especiais (Réveillon, Carnaval, Semana Santa etc.) sem alterar código. O link "Admin" fica no footer. **Boas práticas:** (1) Use senha forte e guarde em `.env.local`; (2) nunca commite `.env.local`; (3) em produção, defina `ADMIN_PASSWORD` e `ADMIN_SESSION_SECRET` nas variáveis de ambiente do host.
 
 ---
 

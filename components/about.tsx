@@ -1,11 +1,11 @@
 import Image from "next/image"
-import { Leaf, Coffee, Heart, Mountain } from "lucide-react"
+import { Coffee, Mountain, Heart, Car } from "lucide-react"
 
 const features = [
   {
     icon: Coffee,
     title: "Café da Manhã Incluso",
-    description: "Delicioso café da manhã com produtos locais e caseiros",
+    description: "Eleito pelos clientes como um dos melhores entre as pousadas de Mulungu. Produtos locais e caseiros.",
   },
   {
     icon: Mountain,
@@ -13,14 +13,14 @@ const features = [
     description: "Temperaturas amenas durante todo o ano",
   },
   {
-    icon: Leaf,
-    title: "Natureza Preservada",
-    description: "Área verde com fauna e flora nativas",
+    icon: Heart,
+    title: "Ambiente Familiar",
+    description: "Acolhimento e hospitalidade para toda a família",
   },
   {
-    icon: Heart,
-    title: "Hospitalidade Local",
-    description: "Atendimento acolhedor e personalizado",
+    icon: Car,
+    title: "Estacionamento",
+    description: "Estacionamento gratuito para hóspedes",
   },
 ]
 
@@ -37,6 +37,11 @@ export default function About() {
                 fill
                 className="object-cover"
               />
+              <div className="absolute inset-0 flex items-end justify-center p-6 bg-gradient-to-t from-black/70 to-transparent">
+                <p className="text-2xl md:text-3xl font-serif font-bold text-white tracking-wide text-center">
+                  Quem Conhece Não Esquece
+                </p>
+              </div>
             </div>
             <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-primary/10 rounded-lg -z-10" />
           </div>
@@ -55,6 +60,9 @@ export default function About() {
               </p>
               <p>
                 Localizados em uma área privilegiada em meio à Mata Atlântica do Maciço de Baturité, nossa missão é oferecer uma experiência de conforto, natureza exuberante e um atendimento próximo e humanizado.
+              </p>
+              <p className="rounded-lg bg-primary/10 border border-primary/20 p-4 text-foreground font-medium">
+                Nosso café da manhã é um dos nossos maiores orgulhos: eleito pelos clientes como um dos melhores entre as pousadas de Mulungu, com produtos locais e caseiros para começar o dia com energia.
               </p>
             </div>
 
