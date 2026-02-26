@@ -8,6 +8,8 @@ export interface PacoteEspecial {
   descricao: string
   ativo: boolean
   ordem: number
+  /** URLs ou caminhos das imagens (ex: /images/reveillon.jpg). Várias = carrossel. */
+  imagens?: string[]
 }
 
 const DATA_FILE = path.join(process.cwd(), "data", "pacotes-especiais.json")

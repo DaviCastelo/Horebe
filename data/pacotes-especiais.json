@@ -4,16 +4,20 @@
     "titulo": "Réveillon",
     "datas": "31/12 a 01/01",
     "descricao": "Pacote especial de Réveillon com café da manhã incluso.",
-    "ativo": true,
-    "ordem": 1
+    "ativo": false,
+    "ordem": 1,
+    "imagens": []
   },
   {
     "id": "exemplo-carnaval",
     "titulo": "Carnaval",
-    "datas": "Datas do Carnaval",
+    "datas": "31/23 a 23/24",
     "descricao": "Folia na serra com conforto. Consulte disponibilidade.",
     "ativo": true,
-    "ordem": 2
+    "ordem": 2,
+    "imagens": [
+      "https://portalmarcosandrade.com.br/hf-conteudo/uploads/posts/2026/02/2494_22835-cats-jpg-jpg.jpg"
+    ]
   },
   {
     "id": "exemplo-semana-santa",
@@ -21,6 +25,9 @@
     "datas": "Feriado móvel",
     "descricao": "Pacote para Semana Santa. Ideal para descanso em família.",
     "ativo": true,
-    "ordem": 3
+    "ordem": 3,
+    "imagens": [
+      "https://comorezar.com.br/wp-content/uploads/2026/01/semana-santa-cronograma.webp"
+    ]
   }
 ]

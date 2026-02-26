@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, LogOut, Plus, Trash2, Save, ArrowLeft, Eye, EyeOff } from "lucide-react"
+import { Calendar, LogOut, Plus, Trash2, Save, ArrowLeft, Eye, EyeOff, ImagePlus } from "lucide-react"
 
 export interface PacoteEspecial {
   id: string
@@ -16,6 +16,7 @@ export interface PacoteEspecial {
   descricao: string
   ativo: boolean
   ordem: number
+  imagens?: string[]
 }
 
 export default function AdminPage() {
@@ -86,13 +87,42 @@ export default function AdminPage() {
     const id = `pacote-${Date.now()}`
     setPacotes((prev) => [
       ...prev,
-      { id, titulo: "", datas: "", descricao: "", ativo: true, ordem: prev.length + 1 },
+      { id, titulo: "", datas: "", descricao: "", ativo: true, ordem: prev.length + 1, imagens: [] },
     ])
   }
 
-  const updatePacote = (id: string, field: keyof PacoteEspecial, value: string | boolean | number) => {
+  const updatePacote = (id: string, field: keyof PacoteEspecial, value: string | boolean | number | string[]) => {
     setPacotes((prev) =>
       prev.map((p) => (p.id === id ? { ...p, [field]: value } : p))
+    )
+  }
+
+  const updatePacoteImagem = (id: string, index: number, url: string) => {
+    setPacotes((prev) =>
+      prev.map((p) => {
+        if (p.id !== id) return p
+        const list = [...(p.imagens ?? [])]
+        list[index] = url
+        return { ...p, imagens: list }
+      })
+    )
+  }
+
+  const addPacoteImagem = (id: string) => {
+    setPacotes((prev) =>
+      prev.map((p) =>
+        p.id === id ? { ...p, imagens: [...(p.imagens ?? []), ""] } : p
+      )
+    )
+  }
+
+  const removePacoteImagem = (id: string, index: number) => {
+    setPacotes((prev) =>
+      prev.map((p) => {
+        if (p.id !== id) return p
+        const list = (p.imagens ?? []).filter((_, i) => i !== index)
+        return { ...p, imagens: list }
+      })
     )
   }
 
@@ -104,10 +134,14 @@ export default function AdminPage() {
     setSaving(true)
     setSaveMessage("")
     try {
+      const toSave = pacotes.map((p) => ({
+        ...p,
+        imagens: (p.imagens ?? []).filter((u) => typeof u === "string" && u.trim() !== ""),
+      }))
       const res = await fetch("/api/admin/pacotes-especiais", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(pacotes),
+        body: JSON.stringify(toSave),
         credentials: "include",
       })
       if (!res.ok) {
@@ -263,6 +297,45 @@ export default function AdminPage() {
                     onChange={(e) => updatePacote(p.id, "descricao", e.target.value)}
                     placeholder="Breve descrição do pacote"
                   />
+                </div>
+                <div className="mt-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Label className="text-xs">Imagens (URL ou caminho)</Label>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => addPacoteImagem(p.id)}
+                      className="h-7 px-2 text-muted-foreground"
+                    >
+                      <ImagePlus className="w-4 h-4 mr-1" />
+                      Adicionar
+                    </Button>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    Use caminhos como /images/nome.jpg ou URLs. Várias imagens viram carrossel no site.
+                  </p>
+                  <div className="space-y-2">
+                    {(p.imagens ?? []).map((url, idx) => (
+                      <div key={`${p.id}-img-${idx}`} className="flex gap-2">
+                        <Input
+                          value={url}
+                          onChange={(e) => updatePacoteImagem(p.id, idx, e.target.value)}
+                          placeholder="/images/pacote.jpg"
+                          className="flex-1"
+                        />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => removePacoteImagem(p.id, idx)}
+                          className="shrink-0 text-destructive hover:text-destructive h-9 w-9"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
                   <label className="flex items-center gap-2 text-sm">
