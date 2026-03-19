@@ -19,6 +19,15 @@ export interface PacoteEspecial {
   imagens?: string[]
 }
 
+function removeImageAtIndex(images: string[] | undefined, indexToRemove: number): string[] {
+  const source = images ?? []
+  const next: string[] = []
+  for (let i = 0; i < source.length; i += 1) {
+    if (i !== indexToRemove) next.push(source[i])
+  }
+  return next
+}
+
 export default function AdminPage() {
   const router = useRouter()
   const [auth, setAuth] = useState<boolean | null>(null)
@@ -30,6 +39,7 @@ export default function AdminPage() {
   const [saving, setSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState("")
   const [uploadingByPacote, setUploadingByPacote] = useState<Record<string, boolean>>({})
+  const [deletingByImageUrl, setDeletingByImageUrl] = useState<Record<string, boolean>>({})
 
   const checkAuth = useCallback(async () => {
     try {
@@ -121,10 +131,41 @@ export default function AdminPage() {
     setPacotes((prev) =>
       prev.map((p) => {
         if (p.id !== id) return p
-        const list = (p.imagens ?? []).filter((_, i) => i !== index)
+        const list = removeImageAtIndex(p.imagens, index)
         return { ...p, imagens: list }
       })
     )
+  }
+
+  const removePacoteImagemFromBlob = async (id: string, index: number, imageUrl: string) => {
+    if (!imageUrl?.startsWith("https://")) {
+      removePacoteImagem(id, index)
+      return
+    }
+
+    setDeletingByImageUrl((prev) => ({ ...prev, [imageUrl]: true }))
+    setSaveMessage("")
+    try {
+      const res = await fetch("/api/admin/upload", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url: imageUrl }),
+        credentials: "include",
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setSaveMessage(data.error || "Falha ao excluir imagem do Blob.")
+        return
+      }
+
+      removePacoteImagem(id, index)
+      setSaveMessage("Imagem excluída com sucesso do Blob.")
+      setTimeout(() => setSaveMessage(""), 2500)
+    } catch {
+      setSaveMessage("Falha ao excluir imagem do Blob.")
+    } finally {
+      setDeletingByImageUrl((prev) => ({ ...prev, [imageUrl]: false }))
+    }
   }
 
   const uploadPacoteImagem = async (id: string, file: File) => {
@@ -379,7 +420,8 @@ export default function AdminPage() {
                           type="button"
                           variant="ghost"
                           size="icon"
-                          onClick={() => removePacoteImagem(p.id, idx)}
+                          disabled={Boolean(deletingByImageUrl[url])}
+                          onClick={() => void removePacoteImagemFromBlob(p.id, idx, url)}
                           className="shrink-0 text-destructive hover:text-destructive h-9 w-9"
                         >
                           <Trash2 className="w-4 h-4" />

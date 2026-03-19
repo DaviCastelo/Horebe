@@ -1,11 +1,11 @@
 import Header from "@/components/header"
 import Hero from "@/components/hero"
+import DatasEspeciais from "@/components/datas-especiais"
 import About from "@/components/about"
 import Accommodations from "@/components/accommodations"
 import Amenities from "@/components/amenities"
 import Gallery from "@/components/gallery"
 import AgendaCultural from "@/components/agenda-cultural"
-import DatasEspeciais from "@/components/datas-especiais"
 import Location from "@/components/location"
 import Testimonials from "@/components/testimonials"
 import Policies from "@/components/policies"
@@ -17,12 +17,12 @@ export default function Home() {
     <main className="min-h-screen w-full min-w-0">
       <Header />
       <Hero />
+      <DatasEspeciais />
       <About />
       <Accommodations />
       <Amenities />
       <Gallery />
       <AgendaCultural />
-      <DatasEspeciais />
       <Testimonials />
       <Location />
       <Policies />

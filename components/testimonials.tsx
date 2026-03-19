@@ -8,6 +8,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel"
 
@@ -164,6 +166,8 @@ export default function Testimonials() {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="left-2 md:-left-12" />
+          <CarouselNext className="right-2 md:-right-12" />
         </Carousel>
       </div>
     </section>

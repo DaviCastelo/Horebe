@@ -49,7 +49,10 @@ monte-horebe/
 │   ├── globals.css         # Tailwind + theme (CSS variables, base styles)
 │   ├── error.tsx           # Error boundary (client) for graceful error UI
 │   ├── contato/page.tsx    # Contact / reservation page
-│   └── dicas/page.tsx      # Tips & regional info
+│   ├── dicas/page.tsx      # Tips & regional info
+│   ├── api/admin/pacotes-especiais/route.ts # CRUD de pacotes especiais (admin)
+│   ├── api/admin/upload/route.ts            # Upload de imagens (Vercel Blob)
+│   └── api/pacotes-especiais/route.ts       # Leitura pública dos pacotes ativos
 ├── components/
 │   ├── ui/                 # shadcn/ui primitives (Button, Card, Carousel, etc.)
 │   ├── header.tsx          # Fixed nav, mobile menu, Booking CTA
@@ -172,10 +175,23 @@ pnpm start
 | `NEXT_PUBLIC_WHATSAPP` | No | Main WhatsApp number (E.164 without `+`). Default: `5585988662996`. |
 | `ADMIN_PASSWORD` | Sim (para /admin) | Senha da área Admin. **Nunca commite** `.env.local` nem coloque a senha no código. Defina apenas em `.env.local`. |
 | `ADMIN_SESSION_SECRET` | Sim (para /admin) | String aleatória com pelo menos 32 caracteres para assinar o cookie de sessão. Defina em `.env.local`. |
+| `KV_REST_API_URL` | Recomendado em produção | Endpoint REST do Upstash/Vercel KV para persistir pacotes especiais fora do filesystem local. |
+| `KV_REST_API_TOKEN` | Recomendado em produção | Token REST do Upstash/Vercel KV para leitura/escrita dos pacotes especiais. |
+| `BLOB_READ_WRITE_TOKEN` | Sim para upload no admin | Token do Vercel Blob usado em `/api/admin/upload` para enviar imagens dos pacotes. |
 
 Used in `lib/constants.ts`; all booking and WhatsApp links/buttons consume these via `BOOKING_URL` and `getWhatsAppUrl()`. See `.env.example` for a template.
 
-**Área Admin (`/admin`):** Permite editar pacotes de datas especiais (Réveillon, Carnaval, Semana Santa etc.) sem alterar código. O link "Admin" fica no footer. **Boas práticas:** (1) Use senha forte e guarde em `.env.local`; (2) nunca commite `.env.local`; (3) em produção, defina `ADMIN_PASSWORD` e `ADMIN_SESSION_SECRET` nas variáveis de ambiente do host.
+**Área Admin (`/admin`):** Permite editar pacotes de datas especiais (Réveillon, Carnaval, Semana Santa etc.) sem alterar código. O link "Admin" fica no footer.  
+**Upload de imagens:** no admin, as imagens podem ser enviadas diretamente (JPG/PNG/WEBP, até 5MB por arquivo), e a URL pública do Blob é salva no pacote.
+
+**Persistência em produção (importante):**
+
+- Em Vercel, o filesystem é read-only para escrita durável (`/var/task`), então não use `data/*.json` como fonte de persistência em produção.
+- Configure `KV_REST_API_URL` e `KV_REST_API_TOKEN` para salvar/ler os pacotes via KV.
+- Configure `BLOB_READ_WRITE_TOKEN` para habilitar upload de imagens pelo admin.
+- Se KV não estiver configurado, o sistema usa fallback local (útil em dev, não recomendado para persistência de produção).
+
+**Boas práticas:** (1) use senha forte e segredo de sessão robusto; (2) nunca commite `.env.local`; (3) configure variáveis no painel do host (Vercel) e faça redeploy após alterações.
 
 ---
 
@@ -216,7 +232,11 @@ The project is set up for **Vercel** (or any Node.js host that supports Next.js)
 
 1. Connect the repo to Vercel and use the default build command (`pnpm build`) and output (Next.js).
 2. Optionally set `NEXT_PUBLIC_BOOKING_URL` and `NEXT_PUBLIC_WHATSAPP` in the project environment variables.
-3. No `unoptimized: true` for images, so ensure the platform supports Next.js image optimization (Vercel does by default). For static export or unsupported hosts, you may need to re-enable `images.unoptimized` in `next.config.mjs`.
+3. For Admin in production, set `ADMIN_PASSWORD` and `ADMIN_SESSION_SECRET`.
+4. For pacotes especiais persistence, set `KV_REST_API_URL` and `KV_REST_API_TOKEN`.
+5. For image upload in Admin, set `BLOB_READ_WRITE_TOKEN`.
+6. After changing environment variables, run a **Redeploy** so functions load the new values.
+7. No `unoptimized: true` for images, so ensure the platform supports Next.js image optimization (Vercel does by default). For static export or unsupported hosts, you may need to re-enable `images.unoptimized` in `next.config.mjs`.
 
 ---
 
