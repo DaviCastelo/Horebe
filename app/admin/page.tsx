@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, type ChangeEvent } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, LogOut, Plus, Trash2, Save, ArrowLeft, Eye, EyeOff, ImagePlus } from "lucide-react"
+import { Calendar, LogOut, Plus, Trash2, Save, ArrowLeft, Eye, EyeOff, ImagePlus, Upload } from "lucide-react"
 
 export interface PacoteEspecial {
   id: string
@@ -29,6 +29,7 @@ export default function AdminPage() {
   const [pacotes, setPacotes] = useState<PacoteEspecial[]>([])
   const [saving, setSaving] = useState(false)
   const [saveMessage, setSaveMessage] = useState("")
+  const [uploadingByPacote, setUploadingByPacote] = useState<Record<string, boolean>>({})
 
   const checkAuth = useCallback(async () => {
     try {
@@ -54,7 +55,7 @@ export default function AdminPage() {
     checkAuth()
   }, [checkAuth])
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     setLoginError("")
     try {
@@ -124,6 +125,45 @@ export default function AdminPage() {
         return { ...p, imagens: list }
       })
     )
+  }
+
+  const uploadPacoteImagem = async (id: string, file: File) => {
+    setUploadingByPacote((prev) => ({ ...prev, [id]: true }))
+    setSaveMessage("")
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      })
+
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || !data?.url) {
+        setSaveMessage(data.error || "Falha ao enviar imagem.")
+        return
+      }
+
+      setPacotes((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, imagens: [...(p.imagens ?? []), data.url as string] } : p))
+      )
+      setSaveMessage("Imagem enviada com sucesso. Clique em Salvar para persistir.")
+      setTimeout(() => setSaveMessage(""), 3000)
+    } catch {
+      setSaveMessage("Falha ao enviar imagem. Tente novamente.")
+    } finally {
+      setUploadingByPacote((prev) => ({ ...prev, [id]: false }))
+    }
+  }
+
+  const handleFileChange = (id: string) => (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      void uploadPacoteImagem(id, file)
+    }
+    e.currentTarget.value = ""
   }
 
   const removePacote = (id: string) => {
@@ -311,6 +351,17 @@ export default function AdminPage() {
                       <ImagePlus className="w-4 h-4 mr-1" />
                       Adicionar
                     </Button>
+                    <label className="h-7 px-2 inline-flex items-center rounded-md border border-input cursor-pointer text-xs text-muted-foreground hover:text-foreground">
+                      <Upload className="w-3.5 h-3.5 mr-1" />
+                      {uploadingByPacote[p.id] ? "Enviando..." : "Upload"}
+                      <input
+                        type="file"
+                        accept="image/png,image/jpeg,image/webp"
+                        className="hidden"
+                        disabled={Boolean(uploadingByPacote[p.id])}
+                        onChange={handleFileChange(p.id)}
+                      />
+                    </label>
                   </div>
                   <p className="text-xs text-muted-foreground mb-2">
                     Use caminhos como /images/nome.jpg ou URLs. Várias imagens viram carrossel no site.
@@ -345,7 +396,7 @@ export default function AdminPage() {
                       onChange={(e) => updatePacote(p.id, "ativo", e.target.checked)}
                       className="rounded"
                     />
-                    Ativo (exibir no site)
+                    <span>Ativo (exibir no site)</span>
                   </label>
                   <Button
                     type="button"

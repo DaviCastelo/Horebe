@@ -3,7 +3,7 @@ import { getPacotesEspeciais } from "@/lib/pacotes-especiais"
 
 export async function GET() {
   try {
-    const pacotes = getPacotesEspeciais()
+    const pacotes = await getPacotesEspeciais()
     return NextResponse.json(pacotes)
   } catch (err) {
     console.error("[pacotes-especiais]", err)

@@ -20,7 +20,7 @@ export async function GET() {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 })
   }
   try {
-    const all = getAllPacotesEspeciais()
+    const all = await getAllPacotesEspeciais()
     return NextResponse.json(all)
   } catch {
     return NextResponse.json([])
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json()
     const pacotes = Array.isArray(body) ? (body as PacoteEspecial[]) : []
-    savePacotesEspeciais(pacotes)
+    await savePacotesEspeciais(pacotes)
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error("[admin pacotes-especiais]", err)
